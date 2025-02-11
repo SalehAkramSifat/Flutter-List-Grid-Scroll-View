@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeActivity> {
             _currentIndex = index;
           });
         },
+
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.list), label: "List View"),
           BottomNavigationBarItem(icon: Icon(Icons.grid_on), label: "Grid View"),
