@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +34,7 @@ class _HomeScreenState extends State<HomeActivity> {
     GridViewExample(),
     SingleChildScrollViewExample(),
     PageViewExample(),
-    // NestedScrollViewExample(),
+    NestedScrollViewExample(),
   ];
 
   @override
@@ -64,6 +66,7 @@ class _HomeScreenState extends State<HomeActivity> {
   }
 }
 
+// 📌 ListView Widget
 class ListViewExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -76,6 +79,7 @@ class ListViewExample extends StatelessWidget {
   }
 }
 
+// 📌 GridView Widget
 class GridViewExample extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -88,6 +92,7 @@ class GridViewExample extends StatelessWidget{
   }
 }
 
+// 📌 SingleChildScrollView Widget
 class SingleChildScrollViewExample extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -99,6 +104,41 @@ class SingleChildScrollViewExample extends StatelessWidget{
         })
 
     ),);
+  }
+}
 
+// 📌 PageView Widget
+class PageViewExample extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return PageView(
+      children: [
+        Container(color: Colors.red, child: Center(child: Text('Page 1'))),
+        Container(color: Colors.red, child: Center(child: Text('Page 1'))),
+        Container(color: Colors.red, child: Center(child: Text('Page 1'))),
+        Container(color: Colors.red, child: Center(child: Text('Page 1'))),
+        Container(color: Colors.red, child: Center(child: Text('Page 1'))),
+        Container(color: Colors.red, child: Center(child: Text('Page 1'))),
+      ],
+    );
+  }
+}
+
+// 📌 NestedScrollView Widget
+class NestedScrollViewExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return NestedScrollView(
+      headerSliverBuilder: (context, innerBoxIsScrolled) {
+        return [
+          SliverAppBar(expandedHeight: 200, floating: false, pinned: true,
+            flexibleSpace: FlexibleSpaceBar(title: Text("Nested ScrollView"),),
+          ),
+        ];
+      },
+      body: ListView.builder(itemCount:100,itemBuilder: (context, index){
+        return ListTile(title: Text("Nasted Item${index+1}"),);
+      }),
+    );
   }
 }
