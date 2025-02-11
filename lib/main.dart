@@ -30,8 +30,8 @@ class _HomeScreenState extends State<HomeActivity> {
   final List<Widget> _screens = [
     ListViewExample(),
     GridViewExample(),
-    // SingleChildScrollViewExample(),
-    // PageViewExample(),
+    SingleChildScrollViewExample(),
+    PageViewExample(),
     // NestedScrollViewExample(),
   ];
 
@@ -71,10 +71,11 @@ class ListViewExample extends StatelessWidget {
       itemCount: 100,
       itemBuilder: (context, index){
       return ListTile(leading: Icon(Icons.star),
-      title: Text("Item ${index-1}"),);
+      title: Text("Item ${index+1}"),);
     });
   }
 }
+
 class GridViewExample extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -85,5 +86,19 @@ class GridViewExample extends StatelessWidget{
       return Card(margin: EdgeInsets.all(10),child: Center(child: Text("Grid ${index+1}"),), color: Colors.purpleAccent,);
     },);
   }
+}
 
+class SingleChildScrollViewExample extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(child: Column(
+      children:
+        List.generate(100, (index){
+          return Padding(padding: EdgeInsets.all(10),
+          child: Text("Item ${index+1}", style: TextStyle(fontSize: 20),),);
+        })
+
+    ),);
+
+  }
 }
