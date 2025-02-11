@@ -12,8 +12,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.red,
-        selectedItemColor: Colors.blue,
       )),
       debugShowCheckedModeBanner: false,
       home: HomeActivity(),
