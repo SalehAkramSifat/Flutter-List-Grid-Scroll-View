@@ -11,8 +11,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      )),
       debugShowCheckedModeBanner: false,
       home: HomeActivity(),
     );
@@ -31,7 +29,7 @@ class _HomeScreenState extends State<HomeActivity> {
 
   final List<Widget> _screens = [
     ListViewExample(),
-    // GridViewExample(),
+    GridViewExample(),
     // SingleChildScrollViewExample(),
     // PageViewExample(),
     // NestedScrollViewExample(),
@@ -43,8 +41,11 @@ class _HomeScreenState extends State<HomeActivity> {
       appBar: AppBar(title: Text("List Grid Scroll View"), centerTitle: true),
 
       body: _screens[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(selectedItemColor: Colors.red,
-        backgroundColor: Colors.red,
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.white,
+        backgroundColor: Colors.blue,
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -52,7 +53,7 @@ class _HomeScreenState extends State<HomeActivity> {
           });
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.list,), label: "List View"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "List View"),
           BottomNavigationBarItem(icon: Icon(Icons.grid_on), label: "Grid View"),
           BottomNavigationBarItem(icon: Icon(Icons.view_column), label: "Scroll View"),
           BottomNavigationBarItem(icon: Icon(Icons.pages), label: "Page View"),
@@ -71,7 +72,18 @@ class ListViewExample extends StatelessWidget {
       itemBuilder: (context, index){
       return ListTile(leading: Icon(Icons.star),
       title: Text("Item ${index-1}"),);
-    }
-    );
+    });
   }
+}
+class GridViewExample extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2
+    ), itemCount: 100,
+    itemBuilder: (context, index){
+      return Card(margin: EdgeInsets.all(10),child: Center(child: Text("Grid ${index+1}"),), color: Colors.purpleAccent,);
+    },);
+  }
+
 }
